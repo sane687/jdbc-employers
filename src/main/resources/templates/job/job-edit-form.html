@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Job edit</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/job/update/{id}(id=${job.getId()})}" th:object="${job}">
+
+    <label for="name">Введите имя должности: </label>
+    <input type="text" th:field="*{jobName}" id="name">
+    <div style="color:red" th:if="${#fields.hasErrors('jobName')}" th:errors="*{jobName}">Error message</div>
+    <br>
+
+    <label for="salary">Введите зароботную плату должности: </label>
+    <input type="text" th:field="*{salary}" id="salary">
+    <div style="color:red" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}">Error message</div>
+    <br>
+
+    <label for="capacity">Введите количество человек в должности: </label>
+    <input type="text" th:field="*{capacity}" id="capacity">
+    <div style="color:red" th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}">Error message</div>
+    <br>
+
+    <div style="color:red" th:text="${jobUpdateError}">Error message</div>
+
+    <input type="submit" value="Создать"/>
+
+    <p><a th:href="@{/people}">На главную</a></p>
+</form>
+<br/>
+</body>
+</html>

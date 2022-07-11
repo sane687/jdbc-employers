@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Department</title>
+</head>
+<body>
+<a style="font-weight: bold">Одел: </a>
+<a th:text="${department.getDepartmentName()}">NAME</a> <br>
+<a style="font-weight: bold">Начальник: </a>
+<a th:text="${department.getHead()}">HEAD</a> <br>
+<a style="font-weight: bold">Телефон: </a>
+<a th:text="${department.getPhoneNumber()}">PHONE NUMBER</a> <br>
+<a style="font-weight: bold">Email: </a>
+<a th:text="${department.getEmail()}">EMAIL</a> <br>
+
+<br>
+<a th:href="@{/people}">На главную</a>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Job management</title>
+</head>
+<body>
+<div th:switch="${jobs}">
+    <h2 th:case="null">No jobs found</h2>
+    <div th:case="*">
+        <h2>Должности предприятия:</h2>
+        <table th:border="1" th:cellspacing="0">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Название</th>
+                <th>Зарплата</th>
+                <th>Вместимость</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="job:${jobs}">
+                <td th:text="${job.getId()}"></td>
+                <td th:text="${job.getJobName()}"></td>
+                <td th:text="${job.getSalary()}"></td>
+                <td th:text="${job.getCapacity()}"></td>
+                <td><a th:href = "@{job/edit/{id}(id=${job.getId()})}">Редактировать</a></td>
+                <td><a th:href = "@{job/delete/{id}(id=${job.getId()})}">Удалить</a></td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+    <p><a th:href="@{/job/new}">Создать должность</a></p>
+
+    <p><a th:href="@{/people}">На главную</a></p>
+</body>
+</html>

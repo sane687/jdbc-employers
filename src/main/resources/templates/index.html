@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<div th:switch="${employers}">
+    <h2 th:case="null">No employers found</h2>
+    <div th:case="*">
+        <h2>Сотрудники предприятия:</h2>
+        <table th:border="1" th:cellspacing="0">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Имя</th>
+                <th>Должность</th>
+                <th>Отдел</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="employee:${employers}">
+                <td th:text="${employee.getId()}"></td>
+                <td><a th:text="${employee.getEmployeeName()}" th:href="@{people/{id}(id=${employee.getId()})}"></a></td>
+                <td th:text="${employee.getJobTitle()}"></td>
+                <td><a th:text="${employee.getDepartmentTitle()}" th:href="@{department/{id}(id=${employee.getDepartmentId()})}"></a> </td>
+                <td><a th:href = "@{people/edit/{id}(id=${employee.getId()})}">Редактировать</a></td>
+                <td><a th:href = "@{people/delete/{id}(id=${employee.getId()})}">Удалить сотрудника</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a th:href="@{/people/new}">Создать сотрудника</a></p>
+    <p><a th:href="@{/job}">Управление должностями</a></p>
+    <p><a th:href="@{/department}">Управление отделами</a></p>
+</div>
+</body>
+</html>

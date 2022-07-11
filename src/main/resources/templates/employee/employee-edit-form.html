@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<body>
+
+    <form th:method="POST" th:action="@{/people/update/{id}(id=${employee.getId()})}" th:object="${employee}">
+        <a th:text="${updateEmployeeError}" style="color: red">ERROR</a> <br>
+
+        <label for="name">Enter name: </label>
+        <input type="text" th:field="*{employeeName}" id="name">
+        <div style="color:red" th:if="${#fields.hasErrors('employeeName')}" th:errors="*{employeeName}">Error message</div>
+        <br/>
+
+        <div>
+            <select id="dep" th:field="*{departmentId}">
+                <option value="0">-- выберите отдел -- </option>
+                <option th:each="department : ${departments}" th:value="${department.getId()}" th:text="${department.getDepartmentName()}"></option>
+            </select>
+        </div>
+        <div style="color:red" th:if="${#fields.hasErrors('departmentId')}" th:errors="*{departmentId}">Error message</div>
+
+        <div>
+            <select  id="joo" th:field="*{jobId}">
+                <option value="0">-- выберите должность -- </option>
+                <option th:each="job : ${jobs}" th:value="${job.getId()}" th:text="${job.getJobName()}"></option>
+            </select>
+        </div>
+
+        <div style="color:red" th:if="${#fields.hasErrors('jobId')}" th:errors="*{jobId}" id="jobErrors">Error message</div>
+
+        <input type="submit" value="Изменить"/>
+    </form>
+    <br>
+    <a th:href="@{/people}">На главную</a>
+</body>
+</html>

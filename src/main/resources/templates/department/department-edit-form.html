@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Department edit</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/department/update/{id}(id=${department.getId()})}" th:object="${department}">
+
+    <label for="name">Введите имя отдела: </label>
+    <input type="text" th:field="*{departmentName}" id="name">
+    <div style="color:red" th:if="${#fields.hasErrors('departmentName')}" th:errors="*{departmentName}">Error message</div>
+    <br>
+
+    <label for="phoneNumber">Введите телефон: </label>
+    <input type="text" th:field="*{phoneNumber}" id="phoneNumber">
+    <div style="color:red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Error message</div>
+    <br>
+
+    <label for="email">Введите email: </label>
+    <input type="text" th:field="*{email}" id="email">
+    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error message</div>
+    <br>
+
+    <div th:if="${duplicateErrors!=null}">
+        <dl>
+            <dt style="color: red" th:each="error : ${duplicateErrors}" th:text="${error}"></dt>
+        </dl>
+    </div>
+
+    <input type="submit" value="Изменить"/>
+
+    <p><a th:href="@{/people}">На главную</a></p>
+</form>
+</body>
+</html>

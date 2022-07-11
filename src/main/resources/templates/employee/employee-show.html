@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show</title>
+</head>
+<body>
+    <a style="font-weight: bold">Имя: </a>
+    <a th:text="${employee.getEmployeeName()}">NAME</a> <br>
+    <a style="font-weight: bold">Должность: </a>
+    <a th:text="${employee.getJobTitle()}">JOB TITLE</a> <br>
+    <a style="font-weight: bold">Отдел: </a>
+    <a th:text="${employee.getDepartmentTitle()}">DEPARTMENT</a> <br>
+    <a style="font-weight: bold">Зароботная плата: </a>
+    <a th:text="${employee.getSalary()}">SALARY</a> <br>
+<br>
+<a th:href="@{/people}">На главную</a>
+</body>
+</html>
